@@ -24,7 +24,7 @@ from tqdm.auto import tqdm
 from transformers import CLIPTextModel, CLIPTokenizer
 
 from tuneavideo.models.unet import UNet3DConditionModel
-from tuneavideo.data.dataset import TuneAVideoDataset
+from tuneavideo.data.dataset import TuneAVideoDataset, ImagesDataset
 from tuneavideo.pipelines.pipeline_tuneavideo import TuneAVideoPipeline
 from tuneavideo.util import save_videos_grid, ddim_inversion
 from einops import rearrange
@@ -68,6 +68,7 @@ def main(
     seed: Optional[int] = None,
 ):
     *_, config = inspect.getargvalues(inspect.currentframe())
+    assert train_data["data_mode"] in ["video", "images"], "Data mode must be 'video' or 'images'"
 
     accelerator = Accelerator(
         gradient_accumulation_steps=gradient_accumulation_steps,
@@ -154,7 +155,10 @@ def main(
     )
 
     # Get the training dataset
-    train_dataset = TuneAVideoDataset(**train_data)
+    if train_data["data_mode"] =="video":
+        train_dataset = TuneAVideoDataset(**train_data)
+    else:
+        train_dataset = ImagesDataset(**train_data)
 
     # Preprocessing the dataset
     train_dataset.prompt_ids = tokenizer(

@@ -1,9 +1,10 @@
 pretrained_model_path: "/data/weights/stable_diffusion/stable_diffusion_v15"
-output_dir: "./outputs/man-skiing"
+output_dir: "./outputs/xray-of-hands"
 
 train_data:
-  video_path: "data/man-skiing.mp4"
-  prompt: "a man is skiing"
+  data_mode: "images"
+  images_path: "data/xray-of-hands"
+  prompt: "xray of hands"
   n_sample_frames: 24
   width: 288
   height: 288
@@ -12,10 +13,10 @@ train_data:
 
 validation_data:
   prompts:
-    - "mickey mouse is skiing on the snow"
-    - "spider man is skiing on the beach, cartoon style"
-    - "wonder woman, wearing a cowboy hat, is skiing"
-    - "a man, wearing pink clothes, is skiing at sunset"
+    - "xray of legs"
+    - "hands waving"
+    - "xray of hands waving"
+    - "xray of body running"
   video_length: 24
   width: 288
   height: 288

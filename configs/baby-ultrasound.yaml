@@ -1,24 +1,24 @@
 pretrained_model_path: "/data/weights/stable_diffusion/stable_diffusion_v15"
-output_dir: "./outputs/man-skiing"
+output_dir: "./outputs/baby-ultrasound"
 
 train_data:
-  video_path: "data/man-skiing.mp4"
-  prompt: "a man is skiing"
+  data_mode: "video"
+  video_path: "data/baby-ultrasound.mp4"
+  prompt: "The little baby is spinning in the mother's womb during an ultrasound"
   n_sample_frames: 24
-  width: 288
-  height: 288
+  width: 304
+  height: 256
   sample_start_idx: 0
-  sample_frame_rate: 2
+  sample_frame_rate: 4
 
 validation_data:
   prompts:
-    - "mickey mouse is skiing on the snow"
-    - "spider man is skiing on the beach, cartoon style"
-    - "wonder woman, wearing a cowboy hat, is skiing"
-    - "a man, wearing pink clothes, is skiing at sunset"
+    - "ultrasound of stomach, highly detailed, high quality, 4k"
+    - "the little baby in the mother's womb, highly detailed, high quality, 4k"
+    - "the little baby waving hands during an ultrasound, highly detailed, high quality, 4k"
   video_length: 24
-  width: 288
-  height: 288
+  width: 304
+  height: 256
   num_inference_steps: 50
   guidance_scale: 12.5
   use_inv_latent: True
